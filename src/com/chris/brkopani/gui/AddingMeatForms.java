@@ -10,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,10 +32,10 @@ public class AddingMeatForms {
     private JButton addBikerBUTTON, startRaceBUTTON;
     private JPanel buttonsPANEL;
     private JLabel bikeImage;
-    private RaceManipulation rm;
+    // private RaceManipulation rm;
     private final Color col = new Color(86, 86, 86);
 
-    public void createAndShowGui() {
+    public void createAndShowGui() throws SQLException {
         WebLookAndFeel.install();
         //SQL Access
         MySQLAccess.connection();
@@ -69,23 +72,32 @@ public class AddingMeatForms {
             }
         });
         //on mouse over listener
-        rm = new RaceManipulation();
-        rm.createAndShowGui();
+
         bikeImage.addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseEntered(MouseEvent evt) {
 
             }
 
+            @Override
             public void mouseExited(MouseEvent evt) {
 
             }
 
+            @Override
             public void mousePressed(MouseEvent evt) {
-                rm.setVisible(true);
+                try {
+                    RaceManipulation rm = new RaceManipulation();
+                    rm.createAndShowGui();
+                    rm.setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddingMeatForms.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
+            @Override
             public void mouseReleased(MouseEvent evt) {
-                rm.setVisible(false);
+                //rm.setVisible(false);
             }
         });
         //add biker listener
@@ -106,7 +118,7 @@ public class AddingMeatForms {
     public JPanel form() {
         JPanel p = new JPanel(new GridLayout(10, 0));
         p.setBackground(col);
-        bikersNameL = new JLabel("Name");
+        bikersNameL = new JLabel("First Name");
         bikersNameL.setForeground(Color.LIGHT_GRAY);
         bikersNameTXT = new JTextField(20);
         bikersLastNameL = new JLabel("Last Name");

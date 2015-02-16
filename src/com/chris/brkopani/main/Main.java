@@ -1,6 +1,7 @@
 package com.chris.brkopani.main;
 
 import com.chris.brkopani.gui.AddingMeatForms;
+import java.sql.SQLException;
 
 /**
  *
@@ -8,7 +9,7 @@ import com.chris.brkopani.gui.AddingMeatForms;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         AddingMeatForms mf = new AddingMeatForms();
         mf.createAndShowGui();
 
