@@ -33,7 +33,7 @@ public class AddingMeatForms {
     private JPanel buttonsPANEL;
     private JLabel bikeImage;
     // private RaceManipulation rm;
-    private final Color col = new Color(86, 86, 86);
+   
 
     public void createAndShowGui() throws SQLException {
         WebLookAndFeel.install();
@@ -49,12 +49,12 @@ public class AddingMeatForms {
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("res/br.png"));
         this.getClass().getResource("res/br.png");
 
-        frame.getContentPane().setBackground(col);
+        frame.getContentPane().setBackground(GetRect.col);
         //gui content stuff
         addBikerBUTTON = new JButton("Add Biker");
         startRaceBUTTON = new JButton("Start Race");
         buttonsPANEL = new JPanel(new GridLayout(0, 2));
-        buttonsPANEL.setBackground(col);
+        buttonsPANEL.setBackground(GetRect.col);
         frame.add(buttonsPANEL, BorderLayout.SOUTH);
         bikeImage = new JLabel(new ImageIcon("res/br_big.png"));
         frame.add(bikeImage, BorderLayout.CENTER);
@@ -66,8 +66,14 @@ public class AddingMeatForms {
         //Start race listener
         startRaceBUTTON.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Stop Crap!");
-                frame.dispose();
+                try {
+                    System.out.println("Stop Crap!");
+                    frame.dispose();
+                    RaceIsUp rup = new RaceIsUp();
+                    rup.init();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddingMeatForms.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             }
         });
@@ -117,7 +123,7 @@ public class AddingMeatForms {
     //form to add bikers to database easy
     public JPanel form() {
         JPanel p = new JPanel(new GridLayout(10, 0));
-        p.setBackground(col);
+        p.setBackground(GetRect.col);
         bikersNameL = new JLabel("First Name");
         bikersNameL.setForeground(Color.LIGHT_GRAY);
         bikersNameTXT = new JTextField(20);

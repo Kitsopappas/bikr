@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.chris.brkopani.logic;
 
 import java.sql.Connection;
@@ -68,6 +63,22 @@ public class MySQLAccess {
         }//end try
         //System.out.println("Goodbye!");
     }//end conn
+    
+    public static void insertTime(int number,long time){
+         System.out.println("Inserting records into the table...");
+        try {
+
+            stmt = conn.createStatement();
+            String values = String.format("VALUES ('%2d', '%2d')", number, time);
+            String sql = "INSERT INTO num_val (NUMBER,CUR_TIME)" + values;
+            stmt.executeUpdate(sql);
+
+            System.out.println("Inserted records into the table...");
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 
     public static void querys(String name, String lastname, int age, int weight, String town) {
         System.out.println("Inserting records into the table...");
