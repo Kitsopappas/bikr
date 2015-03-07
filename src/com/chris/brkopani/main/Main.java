@@ -1,6 +1,6 @@
 package com.chris.brkopani.main;
 
-import com.chris.brkopani.gui.AddingMeatForms;
+import com.chris.brkopani.gui.analytics.DesktopAnalytics;
 import java.sql.SQLException;
 
 /**
@@ -10,8 +10,11 @@ import java.sql.SQLException;
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-        AddingMeatForms mf = new AddingMeatForms();
-        mf.createAndShowGui();
+       // AddingMeatForms mf = new AddingMeatForms();
+       // mf.createAndShowGui();
+        
+        DesktopAnalytics da = new DesktopAnalytics();
+        da.createAndShowgui();
 
     }
 
