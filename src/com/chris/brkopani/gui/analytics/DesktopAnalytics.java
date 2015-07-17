@@ -6,13 +6,13 @@
 package com.chris.brkopani.gui.analytics;
 
 import com.alee.laf.WebLookAndFeel;
+import com.chris.getbingsimage.SaveImage;
 import java.awt.Toolkit;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 
 /**
  *
@@ -24,18 +24,17 @@ public class DesktopAnalytics {
     private FirstAndLast fal;
     private Graph g;
     private JFrame frame;
-    private JMenuBar menuBar;
-    private JMenu toastTest;
-
+    
     private final String destinationFile = System.getProperty("java.io.tmpdir");
     private final String imgRes = destinationFile + "img.jpg";
-    private final String imgRes_blur = destinationFile + "img_blur.jpg";
 
-    public void createAndShowgui() {
+    public void createAndShowgui() throws SQLException {
 
         WebLookAndFeel.install();
+        SaveImage sv = new SaveImage();
+        sv.saveImg();
         // Create the frame
-        frame = new JFrame("reLine");
+        frame = new JFrame("Desctop Analytics");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("res/icon32_32.png"));
         this.getClass().getResource("res/icon32_32.png");

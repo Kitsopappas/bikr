@@ -1,7 +1,6 @@
 package com.chris.brkopani.main;
 
 import com.chris.brkopani.gui.AddingMeatForms;
-import com.chris.brkopani.logic.MySQLAccess;
 import java.sql.SQLException;
 
 /**
